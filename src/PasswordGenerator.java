@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class PasswordGenerator {
     static void printPasswords(List<List<Integer>> passwords) {
@@ -15,7 +17,7 @@ public class PasswordGenerator {
      * @return The full list of possible passwords
      */
     public static List<List<Integer>> generatePossiblePasswords(int[] digits) {
-        List<List<Integer>> possiblePasswords = new ArrayList<>();
+        Set<List<Integer>> possiblePasswords = new HashSet<>();
 
         if (digits.length == 4) {
             generatePermutations(new ArrayList<>(), digits, new boolean[digits.length], possiblePasswords);
@@ -35,10 +37,10 @@ public class PasswordGenerator {
             throw new RuntimeException("number of digits must be 3 or 4");
         }
 
-        return possiblePasswords;
+        return possiblePasswords.stream().toList();
     }
 
-    private static void generatePermutations(List<Integer> currentPassword, int[] digits, boolean[] used, List<List<Integer>> possiblePasswords) {
+    private static void generatePermutations(List<Integer> currentPassword, int[] digits, boolean[] used, Set<List<Integer>> possiblePasswords) {
         if (currentPassword.size() == 4) {
             possiblePasswords.add(new ArrayList<>(currentPassword));
             return;
