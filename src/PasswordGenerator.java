@@ -5,14 +5,16 @@ import java.util.Set;
 
 public class PasswordGenerator {
     static void printPasswords(List<List<Integer>> passwords) {
+        int num = 1;
         for (List<Integer> password : passwords) {
-            System.out.println(password);
+            System.out.println(num++ + " : " + password);
         }
     }
 
     /**
      * Generates a list of possible passwords from a list of digits.
      * Every password generated must have a length of 4 digits
+     *
      * @param digits digits used in the password
      * @return The full list of possible passwords
      */
